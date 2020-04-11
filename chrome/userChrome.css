@@ -1,0 +1,239 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* --------------------------------------------------------------- */
+/* Removes border */
+/* --------------------------------------------------------------- */
+* {
+	border:none !important;
+}
+
+/* --------------------------------------------------------------- */
+/* Removes tab close icon */
+/* On tab hover, replace favicon to close button */
+/* --------------------------------------------------------------- */
+.tabbrowser-tab .tab-close-button {
+	-moz-box-ordinal-group: 0 !important; 
+	margin: 2px 2px 0px 0px !important;
+}
+
+.tabbrowser-tab .tab-close-button {
+	display: none !important;
+}
+
+.tabbrowser-tab:not([pinned="true"]):hover .tab-icon-image,
+.tabbrowser-tab:not([pinned="true"]):hover .tab-throbber {
+	display: none;
+}
+
+.tabbrowser-tab:not([pinned="true"]):hover .tab-close-button {
+	display: -moz-box !important;
+}
+
+
+/* --------------------------------------------------------------- */
+/* Changes Sidebar bg colour */
+/* --------------------------------------------------------------- */
+#sidebar,
+#sidebar-header {
+    background-color: rgba(35,35,35) !important;
+}
+
+#bookmarksPanel,
+#syncedtabsPanel,
+#bookmarks-view, 
+#history-panel, 
+#historyTree {
+    background-color: rgba(35,35,35) !important;
+}
+
+
+/* --------------------------------------------------------------- */
+/* Removes the sidebar search bar */
+/* Removes the sidebar scrollbar */
+/* --------------------------------------------------------------- */
+#sidebar-search-container {
+	display: none !important;
+}
+
+.hidevscroll-scrollbar {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------- */
+/* Removes title bar spaceer */
+/* Remove space between tabs and min/max/close buttons */
+/* --------------------------------------------------------------- */
+.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"]{
+	width: 0px !important;
+}
+
+#TabsToolbar {
+	margin-right: 0px !important;
+}
+
+
+/* --------------------------------------------------------------- */
+/* Changes the window theme colour to none*/
+/* --------------------------------------------------------------- */
+#main-window {
+	background-color: transparent !important; 
+}
+
+
+/* --------------------------------------------------------------- */
+/* Changes colour of curent tab*/
+/* --------------------------------------------------------------- */
+.tab-background[selected="true"]{
+	background: rgba(25,25,25) !important; 
+}
+
+
+/* --------------------------------------------------------------- */
+/* Changes colour of !current tab and the window buttons */
+/* --------------------------------------------------------------- */
+.tab-background:not([selected=true]),
+#TabsToolbar,
+.titlebar-min, 
+.titlebar-max, 
+.titlebar-close {
+	background: rgba(35,35,35) !important; 
+}
+
+
+/* --------------------------------------------------------------- */
+/* Removes highligh of current tab */
+/* --------------------------------------------------------------- */
+.tab-line {
+	display: none !important; 
+}
+
+
+/* --------------------------------------------------------------- */
+/* Remove border between tabs */
+/* --------------------------------------------------------------- */
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+	border-left: none !important;
+}
+
+
+/* --------------------------------------------------------------- */
+/* Removes back and forward buttons */
+/* Removes the identity box and shield icon */
+/* Removes Hamburger button */
+/* --------------------------------------------------------------- */
+#back-button,
+#forward-button {
+	display: none !important;
+}
+
+#identity-box,
+#tracking-protection-icon-container {
+	display: none !important; 
+}
+
+.urlbar-icon {
+	display: none !important;
+}
+
+#page-action-buttons {
+	display: none !important;
+}
+
+#PanelUI-button {
+	display: none !important;
+}
+
+/* --------------------------------------------------------------- */
+/* Centers url bar text */
+/* Centers bookmarks */
+/* --------------------------------------------------------------- */
+.urlbar-input-box {
+  text-align: center !important;
+  margin-bottom: 0px;
+}
+
+#PlacesToolbarItems {
+	-moz-box-pack: center;
+}
+
+
+/* --------------------------------------------------------------- */
+/* Changes colour of toolbar */
+/* Changes colour of urlbox and urlresult */
+/* --------------------------------------------------------------- */
+.browser-toolbar{
+	background-color: rgba(35,35,35) !important;
+}
+
+#urlbar{
+	background-color: rgba(35,35,35) !important;
+}
+
+
+/* --------------------------------------------------------------- */
+/* Removes the shadow of url bar */
+/* --------------------------------------------------------------- */
+#urlbar-background{
+	box-shadow: none !important;
+}
+
+/* --------------------------------------------------------------- */
+/* Remove expanding urlbar on focus */
+/* --------------------------------------------------------------- */
+/* REMOVE MEGABAR START */
+/* VERSION 1.0.3 */
+/* CODE AT: http://userchrome.wesleybranton.com/megabar */
+/* RELEASE NOTES: http://userchrome.wesleybranton.com/notes/megabar */
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+    /* DISABLE EXPANDING START */
+    #urlbar[breakout][breakout-extend] {
+        top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
+        left: 0 !important;
+        width: 100% !important;
+    }
+    
+    #urlbar[breakout][breakout-extend] > #urlbar-input-container {
+        height: var(--urlbar-height) !important;
+        padding-block: 0 !important;
+        padding-inline: 0 !important;
+    }
+    
+    #urlbar[breakout][breakout-extend] > #urlbar-background {
+        animation-name: none !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .05) !important;
+    }
+    /* DISABLE EXPANDING END */
+}
+
+
+
+/* --------------------------------------------------------------- */
+/* Autohide bookmark */
+/* --------------------------------------------------------------- */
+
+#PersonalToolbar{
+  --uc-bm-height: 20px; /* Might need to adjust if the toolbar has other buttons */
+  --uc-bm-padding: 3px; /* Vertical padding to be applied to bookmarks */
+}
+
+:root[uidensity="compact"] #PersonalToolbar{ --uc-bm-padding: 1px }
+:root[uidensity="touch"] #PersonalToolbar{ --uc-bm-padding: 6px }
+
+#PersonalToolbar:not([customizing]){
+	margin-bottom: calc(2px - var(--uc-bm-height) - 2 * var(--uc-bm-padding));
+	transform: rotateX(90deg);
+	transform-origin: top;
+	transition: transform 135ms linear 48ms !important;
+	z-index: 1;
+}
+#PlacesToolbarItems > .bookmark-item{ padding-block: var(--uc-bm-padding) !important; }
+
+/* SELECT BOOKMARKS TOOLBAR BEHAVIOR */
+/* Comment out or delete either one of these to disable that behavior */
+
+/* Show when urlbar is focused */
+#nav-bar:focus-within + #PersonalToolbar{ transform: rotateX(0) }
+
+/* Show when cursor is over the toolbar area */
+#nav-bar:focus-within + #PersonalToolbar{ transform: rotateX(0) }
